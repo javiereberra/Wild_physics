@@ -26,6 +26,8 @@ Juego::Juego(int ancho, int alto, std::string titulo) {
 
 	pelota = new Pelota();
 
+	pajaro = new Pajaro();
+
 	
 
 
@@ -123,6 +125,7 @@ void Juego::actualizar() {
 	jugador->Movimiento(mousePos.x, mousePos.y);
 
 	pelota->actualizar();
+	pajaro->actualizar();
 }
 
 void Juego::disparar() {
@@ -143,7 +146,7 @@ void Juego::dibujar() {
 	ventana1->draw(*puntajeText);
 	pelota->Dibujar(ventana1);
 	jugador->Dibujar(ventana1);
-	
+	pajaro->Dibujar(ventana1);
 
 	ventana1->display();
 

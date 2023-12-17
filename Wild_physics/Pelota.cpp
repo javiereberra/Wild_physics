@@ -13,7 +13,7 @@ Pelota::Pelota() {
 	pelotaText->loadFromFile("assets/ball.png");
 	pelotaSprite = new Sprite(*pelotaText);
 	pelotaSprite->setScale(0.11f, 0.11f);
-	position = Vector2f(400.0f, 100.0f);
+	position = Vector2f(400.0f, 150.0f);
 	
 
 	velocityX = 1.0f;

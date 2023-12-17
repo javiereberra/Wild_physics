@@ -4,7 +4,7 @@
 #include <SFML/System.hpp>
 #include "Jugador.h"
 #include "Pelota.h"
-
+#include "Pajaro.h"
 
 
 using namespace std;
@@ -54,6 +54,7 @@ public:
 	//jugador
 	Jugador* jugador;
 	Pelota* pelota;
+	Pajaro* pajaro;
 
 
 	//destructor de juego
