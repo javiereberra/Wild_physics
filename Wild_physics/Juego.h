@@ -3,8 +3,11 @@
 #include <SFML/Window.hpp>
 #include <SFML/System.hpp>
 #include "Jugador.h"
+#include "Pelota.h"
 
 
+
+using namespace std;
 using namespace sf;
 
 class Juego {
@@ -48,6 +51,8 @@ public:
 
 	//jugador
 	Jugador* jugador;
+	
+
 
 	//destructor de juego
 	~Juego();

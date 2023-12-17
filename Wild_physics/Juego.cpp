@@ -24,6 +24,8 @@ Juego::Juego(int ancho, int alto, std::string titulo) {
 	//Inicializar el jugador
 	jugador = new Jugador();
 
+	Pelota* pelota = new Pelota(15, 15);
+
 
 	//fuente y texto para el menu
 	font = new Font;
@@ -122,6 +124,7 @@ void Juego::dibujar() {
 
 	ventana1->draw(*fondo);
 	jugador->Dibujar(ventana1);
+	
 
 	ventana1->display();
 
@@ -130,6 +133,8 @@ void Juego::dibujar() {
 
 //Destructor de Juego
 Juego::~Juego() {
-
+	
+	
+	delete jugador;
 	delete ventana1;
 }
