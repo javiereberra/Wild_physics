@@ -2,6 +2,8 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/System.hpp>
+#include "Jugador.h"
+
 
 using namespace sf;
 
@@ -16,8 +18,19 @@ private:
 	Texture* textura1;
 	Sprite* fondo;
 
+	//variables para el menu e interfaz
+	Font* font;
+	Text* menuStart;
+	Text* puntajeText;
+	Text* menuEnd;
+
+
+	
+	
 	//un booleano para determinar cuándo se está jugando y cuándo está en el menu
 	bool start;
+
+
 
 public:
 	//constructor de juego
@@ -32,6 +45,9 @@ public:
 	void procesar_eventos();
 	// método para gestionar el disparo del mouse
 	void disparar();
+
+	//jugador
+	Jugador* jugador;
 
 	//destructor de juego
 	~Juego();

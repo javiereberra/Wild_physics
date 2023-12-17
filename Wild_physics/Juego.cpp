@@ -21,6 +21,27 @@ Juego::Juego(int ancho, int alto, std::string titulo) {
 	//para que siempre inicie el menú
 	start = false;
 
+	//Inicializar el jugador
+	jugador = new Jugador();
+
+
+	//fuente y texto para el menu
+	font = new Font;
+	menuStart = new Text;
+	font->loadFromFile("assets/nintendo-nes-font.ttf");
+	menuStart->setFont(*font);
+	menuStart->setString("PRESIONA 'S' PARA COMENZAR");
+	menuStart->setCharacterSize(20);
+	menuStart->setPosition(115, 65);
+
+	menuEnd = new Text;
+	menuEnd->setFont(*font);
+	menuEnd->setString("PRESIONA 'Q' PARA DETENER EL JUEGO");
+	menuEnd->setCharacterSize(20);
+	menuEnd->setPosition(60, 510);
+
+
+
 }
 
 void Juego::ejecutar() {
@@ -50,6 +71,8 @@ void Juego::ejecutar() {
 		else {
 			//Menu de fondo si start es false
 			ventana1->draw(*fondo);
+			ventana1->draw(*menuStart);
+			ventana1->draw(*menuEnd);
 		}
 
 		ventana1->display();
@@ -85,6 +108,9 @@ void Juego::procesar_eventos() {
 	}
 
 void Juego::actualizar() {
+	Vector2i mousePos = Mouse::getPosition(*ventana1);
+	jugador->Movimiento(mousePos.x, mousePos.y);
+
 }
 
 void Juego::disparar() {
@@ -95,7 +121,7 @@ void Juego::dibujar() {
 	ventana1->clear();
 
 	ventana1->draw(*fondo);
-
+	jugador->Dibujar(ventana1);
 
 	ventana1->display();
 
