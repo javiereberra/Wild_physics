@@ -16,7 +16,7 @@ private:
 
 	float velocityX;
 	float velocityY;
-	
+	float aceleracion;
 	
 
 public:

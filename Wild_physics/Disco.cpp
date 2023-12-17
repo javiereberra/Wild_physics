@@ -16,9 +16,9 @@ Disco::Disco() {
 	position = Vector2f(50.0f, 450.0f);
 
 
-	velocityX = 2.0f;
-	velocityY = 1.0f;
-
+	velocityX = 0.1f;
+	velocityY = 2.0f;
+	aceleracion = 0.1f;
 
 }
 
@@ -43,6 +43,7 @@ void Disco::actualizar() {
 
 	float deltaTime = 1.0f / 60.0f;
 
+	velocityX += aceleracion * deltaTime;
 	position.x += velocityX * deltaTime;
 	position.y += -velocityY * deltaTime;
 
