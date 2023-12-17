@@ -44,7 +44,14 @@ Juego::Juego(int ancho, int alto, std::string titulo) {
 	menuEnd->setCharacterSize(20);
 	menuEnd->setPosition(60, 510);
 
+	puntajeText = new Text;
+	puntajeText->setFont(*font);
+	puntajeText->setString("PUNTAJE: " + to_string(ptos));
+	puntajeText->setCharacterSize(20);
+	puntajeText->setPosition(60, 510);
 
+
+	ptos = 0;
 
 }
 
@@ -119,6 +126,13 @@ void Juego::actualizar() {
 }
 
 void Juego::disparar() {
+
+	Vector2f playerPos = jugador->ObtenerPosicion();
+
+	if (pelota->Colision(playerPos.x, playerPos.y)) {
+		ptos += 1;
+		puntajeText->setString("PUNTAJE: " + to_string(ptos));
+	}
 }
 
 void Juego::dibujar() {
@@ -126,6 +140,7 @@ void Juego::dibujar() {
 	ventana1->clear();
 
 	ventana1->draw(*fondo);
+	ventana1->draw(*puntajeText);
 	pelota->Dibujar(ventana1);
 	jugador->Dibujar(ventana1);
 	

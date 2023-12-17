@@ -27,6 +27,8 @@ private:
 	Text* puntajeText;
 	Text* menuEnd;
 
+	int ptos;
+
 
 	
 	

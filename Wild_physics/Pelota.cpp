@@ -29,6 +29,16 @@ void Pelota::Dibujar(RenderWindow* ventana1) {
 
 }
 
+bool Pelota::Colision(float x, float y) {
+
+	FloatRect bounds = pelotaSprite->getGlobalBounds();
+
+	if (bounds.contains(x, y)) {
+		return true;
+	}
+
+}
+
 void Pelota::actualizar() {
 
 	float deltaTime = 1.0f / 60.0f;
@@ -43,6 +53,16 @@ void Pelota::actualizar() {
 		position.y = 450.0f;
 		velocityY = -velocityY;
 
+	}
+	if (position.x >= 750.0f)
+	{
+		position.x = 750.0f;
+		velocityX = -velocityX;
+	}
+	if (position.x <= 0.0f)
+	{
+		position.x = 0.0f;
+		velocityX = -velocityX;
 	}
 
 	pelotaSprite->setPosition(position);

@@ -24,7 +24,8 @@ public:
 	void Dibujar(RenderWindow* ventana1);
 	void actualizar();
 	
-	
+	bool Colision(float x, float y);
+
 
 	Sprite* getSprite() { return pelotaSprite; }
 
