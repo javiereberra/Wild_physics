@@ -125,6 +125,8 @@ void Juego::procesar_eventos() {
 			case Event::KeyPressed:
 				if (evento1.key.code == Keyboard::Key::Q)
 					start = false;
+					ptos = 0;
+					puntajeText->setString("PUNTAJE: " + to_string(ptos));
 					ejecutar();
 
 			}
