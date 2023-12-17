@@ -21,17 +21,20 @@ private:
 	Texture* textura1;
 	Sprite* fondo;
 
-	//variables para el menu e interfaz
+	//variables para todos los textos
 	Font* font;
 	Text* menuStart;
 	Text* puntajeText;
 	Text* menuEnd;
-
+	//variable para el puntaje
 	int ptos;
+
+	//un reloj necesario para que cada objeto pueda respawnear
 	Clock _clockPelota;
 	Clock _clockPajaro;
 	Clock _clockDisco;
 	
+	//tiempo en que los objetos están ausentes
 	float tiempoApagado;
 	
 
@@ -39,7 +42,7 @@ private:
 	
 	//un booleano para determinar cuándo se está jugando y cuándo está en el menu
 	bool start;
-
+	//booleanos para determinar si los objetos están activos y por lo tanto dibujarlos
 	bool pelotaVisible;
 	bool pajaroVisible;
 	bool discoVisible;
@@ -56,11 +59,12 @@ public:
 	void dibujar();
 	void actualizar();
 	void procesar_eventos();
-	// método para gestionar el disparo del mouse
+	// método para gestionar el disparo del mouse y colisiones
 	void disparar();
+	//método para la aparicion de objetos
 	void spawn();
 
-	//jugador
+	//jugador y objetos
 	Jugador* jugador;
 	Pelota* pelota;
 	Pajaro* pajaro;

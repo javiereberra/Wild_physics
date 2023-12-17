@@ -11,6 +11,7 @@ private:
 
 	Texture* discoText;
 	Sprite* discoSprite;
+	//para que el spawn rescate la posicion de inicio//
 	Vector2f posicionInicial;
 	Vector2f position;
 

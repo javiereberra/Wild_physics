@@ -21,7 +21,7 @@ Juego::Juego(int ancho, int alto, std::string titulo) {
 	//para que siempre inicie el menú
 	start = false;
 
-	//Inicializar el jugador
+	//Inicializar el jugador y objetos
 	jugador = new Jugador();
 
 	pelota = new Pelota();
@@ -30,6 +30,7 @@ Juego::Juego(int ancho, int alto, std::string titulo) {
 
 	disco = new Disco();
 
+	//ajustar variables para manejar los spawn
 	tiempoApagado = 5.0f;
 	pelotaVisible = false;
 	pajaroVisible = false;
@@ -50,18 +51,19 @@ Juego::Juego(int ancho, int alto, std::string titulo) {
 	menuEnd->setString("PRESIONA 'Q' PARA DETENER EL JUEGO");
 	menuEnd->setCharacterSize(20);
 	menuEnd->setPosition(60, 510);
-
+	//texto puntaje
 	puntajeText = new Text;
 	puntajeText->setFont(*font);
 	puntajeText->setString("PUNTAJE: " + to_string(ptos));
 	puntajeText->setCharacterSize(20);
 	puntajeText->setPosition(60, 510);
 
-
+	//iniciar puntos en 0
 	ptos = 0;
 
 }
 
+//metodo para iniciar un menu simple antes de iniciar el juego
 void Juego::ejecutar() {
 
 	while (ventana1->isOpen()) {
@@ -97,7 +99,7 @@ void Juego::ejecutar() {
 		ventana1->display();
 	}
 }
-
+//iniciar el loop
 void Juego::gameLoop() {
 		
 
@@ -110,7 +112,7 @@ void Juego::gameLoop() {
 		
 	}
 }
-
+//gestionar eventos del disparo y la opción de abandonar el juego y volver al menu
 void Juego::procesar_eventos() {
 		Event evento1;
 		while (ventana1->pollEvent(evento1)) {
@@ -132,7 +134,7 @@ void Juego::procesar_eventos() {
 			}
 		}
 	}
-
+//actualizar jugador y todos los objetos con sus spawns
 void Juego::actualizar() {
 	Vector2i mousePos = Mouse::getPosition(*ventana1);
 	jugador->Movimiento(mousePos.x, mousePos.y);
@@ -141,7 +143,8 @@ void Juego::actualizar() {
 	pajaro->actualizar();
 	disco->actualizar();
 }
-
+//metodo para gestionar el disparo del jugador y comprobar colisiones
+//eliminar objetos y sumar puntaje
 void Juego::disparar() {
 
 	Vector2f playerPos = jugador->ObtenerPosicion();
@@ -162,7 +165,7 @@ void Juego::disparar() {
 		discoVisible = false;
 	}
 }
-
+//mètodo para aparicion de objetos en una posición inicial
 void Juego::spawn() {
 	if (!pelotaVisible) {
 		if (_clockPelota.getElapsedTime().asSeconds() > tiempoApagado) {
@@ -192,7 +195,7 @@ void Juego::spawn() {
 }
 
 
-
+//Metodo para dibujar
 void Juego::dibujar() {
 
 	ventana1->clear();
@@ -223,7 +226,9 @@ void Juego::dibujar() {
 //Destructor de Juego
 Juego::~Juego() {
 	
-	
+	delete pelota;
+	delete pajaro;
+	delete disco;
 	delete jugador;
 	delete ventana1;
 }

@@ -46,7 +46,7 @@ void Pajaro::actualizar() {
 	position.x += velocityX * deltaTime;
 
 
-	
+	//límites de movimiento para que el pájaro rebote en los bordes y cambie su dirección//
 	if (position.x >= 750.0f)
 	{
 		position.x = 750.0f;

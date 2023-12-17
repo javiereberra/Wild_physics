@@ -48,7 +48,8 @@ void Pelota::actualizar() {
 	position.y += velocityY * deltaTime;
 	position.x += velocityX * deltaTime;
 
-
+	//límites para que la pelota siga rebotando tanto en el suelo como
+	//en los bordes de la pantalla
 	if (position.y >= 450.0f)
 	{
 		position.y = 450.0f;
