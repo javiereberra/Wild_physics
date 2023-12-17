@@ -11,7 +11,7 @@ private:
 
 	Texture* discoText;
 	Sprite* discoSprite;
-
+	Vector2f posicionInicial;
 	Vector2f position;
 
 	float velocityX;
@@ -24,6 +24,7 @@ public:
 	Disco();
 	void Dibujar(RenderWindow* ventana1);
 	void actualizar();
+	void setPosicionInicial();
 
 	bool Colision(float x, float y);
 

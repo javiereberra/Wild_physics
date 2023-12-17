@@ -28,13 +28,21 @@ private:
 	Text* menuEnd;
 
 	int ptos;
-
+	Clock _clockPelota;
+	Clock _clockPajaro;
+	Clock _clockDisco;
+	
+	float tiempoApagado;
+	
 
 	
 	
 	//un booleano para determinar cuándo se está jugando y cuándo está en el menu
 	bool start;
 
+	bool pelotaVisible;
+	bool pajaroVisible;
+	bool discoVisible;
 
 
 public:
@@ -50,6 +58,7 @@ public:
 	void procesar_eventos();
 	// método para gestionar el disparo del mouse
 	void disparar();
+	void spawn();
 
 	//jugador
 	Jugador* jugador;

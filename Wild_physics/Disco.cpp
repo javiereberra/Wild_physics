@@ -14,11 +14,11 @@ Disco::Disco() {
 	discoSprite = new Sprite(*discoText);
 	discoSprite->setScale(1.5f, 1.5f);
 	position = Vector2f(50.0f, 450.0f);
-
+	posicionInicial = position;
 
 	velocityX = 0.1f;
-	velocityY = 2.0f;
-	aceleracion = 0.1f;
+	velocityY = 0.1f;
+	aceleracion = 0.05f;
 
 }
 
@@ -44,12 +44,18 @@ void Disco::actualizar() {
 	float deltaTime = 1.0f / 60.0f;
 
 	velocityX += aceleracion * deltaTime;
+	velocityY += aceleracion * deltaTime;
 	position.x += velocityX * deltaTime;
 	position.y += -velocityY * deltaTime;
 
 
 
-	if (position.x >= 850.0f)
+	if (position.x >= 750.0f)
+	{
+		velocityX = 0.0f;
+		velocityY = 0.0f;
+	}
+	if (position.y <= 50.0f)
 	{
 		velocityX = 0.0f;
 		velocityY = 0.0f;
@@ -57,4 +63,8 @@ void Disco::actualizar() {
 
 
 	discoSprite->setPosition(position);
+}
+void Disco::setPosicionInicial() {
+
+	position = posicionInicial;
 }

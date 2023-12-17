@@ -11,7 +11,7 @@ private:
 
 	Texture* pajaroText;
 	Sprite* pajaroSprite;
-
+	Vector2f posicionInicial;
 	Vector2f position;
 
 	float velocityX;
@@ -23,7 +23,7 @@ public:
 	Pajaro();
 	void Dibujar(RenderWindow* ventana1);
 	void actualizar();
-
+	void setPosicionInicial();
 	bool Colision(float x, float y);
 
 

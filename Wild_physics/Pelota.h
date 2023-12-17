@@ -11,7 +11,7 @@ private:
 	
 	Texture* pelotaText;
 	Sprite* pelotaSprite;
-
+	Vector2f posicionInicial;
 	Vector2f position;
 
 	float velocityX;
@@ -23,7 +23,7 @@ public:
 	Pelota();
 	void Dibujar(RenderWindow* ventana1);
 	void actualizar();
-	
+	void setPosicionInicial();
 	bool Colision(float x, float y);
 
 

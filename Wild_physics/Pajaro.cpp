@@ -14,6 +14,7 @@ Pajaro::Pajaro() {
 	pajaroSprite = new Sprite(*pajaroText);
 	pajaroSprite->setScale(1.5f, 1.5f);
 	position = Vector2f(100.0f, 100.0f);
+	posicionInicial = position;
 
 
 	velocityX = 2.0f;
@@ -60,5 +61,9 @@ void Pajaro::actualizar() {
 	}
 
 	pajaroSprite->setPosition(position);
+}
+void Pajaro::setPosicionInicial() {
+
+	position = posicionInicial;
 }
 

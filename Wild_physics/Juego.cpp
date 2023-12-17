@@ -30,7 +30,10 @@ Juego::Juego(int ancho, int alto, std::string titulo) {
 
 	disco = new Disco();
 
-	
+	tiempoApagado = 5.0f;
+	pelotaVisible = false;
+	pajaroVisible = false;
+	discoVisible = false;
 
 
 	//fuente y texto para el menu
@@ -69,9 +72,10 @@ void Juego::ejecutar() {
 			//Presionar "s" para iniciar el gameloop
 			if (evento.type == Event::KeyPressed) {
 				if (evento.key.code == Keyboard::Key::S && !start) {
-
+										
 					start = true;
-					
+								
+
 				}
 			}
 		}
@@ -95,15 +99,15 @@ void Juego::ejecutar() {
 }
 
 void Juego::gameLoop() {
+		
 
-	bool gameOver = false;
+		while (ventana1->isOpen() && start) {
 
-	while (ventana1->isOpen() && !gameOver) {
-
-		procesar_eventos();
-		actualizar();
-		dibujar();
-
+			procesar_eventos();
+			actualizar();
+			
+			dibujar();
+		
 	}
 }
 
@@ -118,6 +122,11 @@ void Juego::procesar_eventos() {
 				if (evento1.mouseButton.button == Mouse::Button::Left)
 					disparar();
 				break;
+			case Event::KeyPressed:
+				if (evento1.key.code == Keyboard::Key::Q)
+					start = false;
+					ejecutar();
+
 			}
 		}
 	}
@@ -125,7 +134,7 @@ void Juego::procesar_eventos() {
 void Juego::actualizar() {
 	Vector2i mousePos = Mouse::getPosition(*ventana1);
 	jugador->Movimiento(mousePos.x, mousePos.y);
-
+	spawn();
 	pelota->actualizar();
 	pajaro->actualizar();
 	disco->actualizar();
@@ -136,10 +145,51 @@ void Juego::disparar() {
 	Vector2f playerPos = jugador->ObtenerPosicion();
 
 	if (pelota->Colision(playerPos.x, playerPos.y)) {
-		ptos += 1;
+		ptos += 5;
 		puntajeText->setString("PUNTAJE: " + to_string(ptos));
+		pelotaVisible = false;
+	}
+	if (pajaro->Colision(playerPos.x, playerPos.y)) {
+		ptos += 2;
+		puntajeText->setString("PUNTAJE: " + to_string(ptos));
+		pajaroVisible = false;
+	}
+	if (disco->Colision(playerPos.x, playerPos.y)) {
+		ptos += 10;
+		puntajeText->setString("PUNTAJE: " + to_string(ptos));
+		discoVisible = false;
 	}
 }
+
+void Juego::spawn() {
+	if (!pelotaVisible) {
+		if (_clockPelota.getElapsedTime().asSeconds() > tiempoApagado) {
+			pelotaVisible = true;
+			_clockPelota.restart();
+			pelota->setPosicionInicial();
+		}
+		
+	}
+	if (!pajaroVisible) {
+		if (_clockPajaro.getElapsedTime().asSeconds() > tiempoApagado) {
+			pajaroVisible = true;
+			_clockPajaro.restart();
+			pajaro->setPosicionInicial();
+		}
+
+	}
+	if (!discoVisible) {
+		if (_clockDisco.getElapsedTime().asSeconds() > tiempoApagado) {
+			discoVisible = true;
+			_clockDisco.restart();
+			disco->setPosicionInicial();
+		}
+
+	}
+
+}
+
+
 
 void Juego::dibujar() {
 
@@ -147,11 +197,22 @@ void Juego::dibujar() {
 
 	ventana1->draw(*fondo);
 	ventana1->draw(*puntajeText);
-	pelota->Dibujar(ventana1);
-	jugador->Dibujar(ventana1);
-	pajaro->Dibujar(ventana1);
-	disco->Dibujar(ventana1);
 
+	if (pelotaVisible) {
+
+		pelota->Dibujar(ventana1);
+	}
+
+	if (pajaroVisible) {
+
+		pajaro->Dibujar(ventana1);
+	}
+
+	if (discoVisible) {
+		disco->Dibujar(ventana1);
+	}
+
+	jugador->Dibujar(ventana1);
 	ventana1->display();
 
 
