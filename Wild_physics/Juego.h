@@ -51,7 +51,7 @@ public:
 
 	//jugador
 	Jugador* jugador;
-	
+	Pelota* pelota;
 
 
 	//destructor de juego

@@ -24,7 +24,9 @@ Juego::Juego(int ancho, int alto, std::string titulo) {
 	//Inicializar el jugador
 	jugador = new Jugador();
 
-	Pelota* pelota = new Pelota(15, 15);
+	pelota = new Pelota();
+
+	
 
 
 	//fuente y texto para el menu
@@ -113,6 +115,7 @@ void Juego::actualizar() {
 	Vector2i mousePos = Mouse::getPosition(*ventana1);
 	jugador->Movimiento(mousePos.x, mousePos.y);
 
+	pelota->actualizar();
 }
 
 void Juego::disparar() {
@@ -123,6 +126,7 @@ void Juego::dibujar() {
 	ventana1->clear();
 
 	ventana1->draw(*fondo);
+	pelota->Dibujar(ventana1);
 	jugador->Dibujar(ventana1);
 	
 
