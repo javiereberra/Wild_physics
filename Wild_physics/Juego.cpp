@@ -28,6 +28,8 @@ Juego::Juego(int ancho, int alto, std::string titulo) {
 
 	pajaro = new Pajaro();
 
+	disco = new Disco();
+
 	
 
 
@@ -126,6 +128,7 @@ void Juego::actualizar() {
 
 	pelota->actualizar();
 	pajaro->actualizar();
+	disco->actualizar();
 }
 
 void Juego::disparar() {
@@ -147,6 +150,7 @@ void Juego::dibujar() {
 	pelota->Dibujar(ventana1);
 	jugador->Dibujar(ventana1);
 	pajaro->Dibujar(ventana1);
+	disco->Dibujar(ventana1);
 
 	ventana1->display();
 

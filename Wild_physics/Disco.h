@@ -5,29 +5,30 @@
 
 using namespace sf;
 
-class Pajaro {
+class Disco {
 
 private:
 
-	Texture* pajaroText;
-	Sprite* pajaroSprite;
+	Texture* discoText;
+	Sprite* discoSprite;
 
 	Vector2f position;
 
 	float velocityX;
 	float velocityY;
 	
+	
 
 public:
 
-	Pajaro();
+	Disco();
 	void Dibujar(RenderWindow* ventana1);
 	void actualizar();
 
 	bool Colision(float x, float y);
 
 
-	Sprite* getSprite() { return pajaroSprite; }
+	Sprite* getSprite() { return discoSprite; }
 
 
 

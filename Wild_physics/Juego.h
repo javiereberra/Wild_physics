@@ -5,7 +5,7 @@
 #include "Jugador.h"
 #include "Pelota.h"
 #include "Pajaro.h"
-
+#include "Disco.h"
 
 using namespace std;
 using namespace sf;
@@ -55,6 +55,7 @@ public:
 	Jugador* jugador;
 	Pelota* pelota;
 	Pajaro* pajaro;
+	Disco* disco;
 
 
 	//destructor de juego
